@@ -1,0 +1,5 @@
+# Preserve the exact bytes certified by CHECKSUMS.sha256 on every platform.
+* -text
+*.dll binary
+*.exe binary
+*.zip binary

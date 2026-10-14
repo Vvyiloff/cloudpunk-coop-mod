@@ -1,0 +1,45 @@
+Third-party components in this test package
+
+BepInEx Unity IL2CPP Windows x64 6.0.0-be.682, commit910844a982dbb126d0c6544847424bc42fb7849c.
+Official original binary distribution:
+https://builds.bepinex.dev/projects/bepinex_be/682/BepInEx-Unity.IL2CPP-win-x64-6.0.0-be.682%2B910844a.zip
+Source: https://github.com/BepInEx/BepInEx/tree/910844a982dbb126d0c6544847424bc42fb7849c
+Local source archive is included in the source-components folder.
+License text: BepInEx/licenses/BepInEx-LICENSE.txt inside the game-copy folder.
+
+The original archive is supplemented with the same Il2CppInterop.Generator.dll
+as the tested development installation:1.4.6+cbdc8ff5db0ad4a433c0f9acc8bd6b241140baea.
+The other original loader core binaries are unchanged.
+Source: https://github.com/BepInEx/Il2CppInterop/tree/cbdc8ff5db0ad4a433c0f9acc8bd6b241140baea
+Local source archive and original license text are included.
+Common/Runtime/HarmonySupport in the original loader are1.4.6-ci.389.
+
+Cpp2IL/LibCpp2IL2022.1.0-development.866, commitf87ccd188ec032cbba27763bf10ba43bb25eb4e8.
+Source: https://github.com/SamboyCoding/Cpp2IL/tree/f87ccd188ec032cbba27763bf10ba43bb25eb4e8
+Local source archive and its original license text are included.
+
+The original loader supplies its CoreCLR/.NET6.0.7 runtime and Doorstop.
+Runtime source: https://github.com/dotnet/runtime/tree/v6.0.7
+Runtime license and third-party notices are included under BepInEx/licenses.
+Doorstop source: https://github.com/NeighTools/UnityDoorstop
+
+The supplied BepInEx/unity-libs directory contains the60 managed Unity API
+base-library files used by the existing tested IL2CPP generator, for Unity2018.4.29.
+The loader normally obtains these from:
+https://unity.bepinex.dev/libraries/2018.4.29.zip
+This package uses the existing matching library snapshot and sets
+IL2CPP.UnityBaseLibrariesSource to an empty value to avoid downloading it again.
+These are generator dependencies, not Cloudpunk's executable or gameplay assemblies.
+They are third-party Unity components; this package assigns them no new license.
+
+The mod DLLs are a separate current CloudpunkCoop test build, protocol18.
+The complete matching working-source snapshot is supplied separately alongside
+this friend package. Existing component licenses retain their respective scope;
+this notice does not assign a new license to the user's mod.
+
+Cloudpunk.exe, GameAssembly.dll, Assembly-CSharp.dll, UnityPlayer.dll,
+Cloudpunk_Data, generated interop, personal logs/configuration and saves are
+not included. The recipient must have their own compatible game installation.
+
+Installation reference:
+https://docs.bepinex.dev/master/articles/user_guide/installation/unity_il2cpp.html

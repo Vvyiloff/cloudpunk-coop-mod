@@ -1,0 +1,14 @@
+# Generated runtime state and personal data must never enter the distribution.
+**/BepInEx/interop/
+**/BepInEx/cache/
+**/BepInEx/LogOutput.*
+**/BepInEx/profiles/
+**/BepInEx/cloudpunk-coop/
+**/UserData/
+**/Saves/
+*.log
+*.dmp
+.env
+.env.*
+Thumbs.db
+.DS_Store
