@@ -1,13 +1,18 @@
-# Generated runtime state and personal data must never enter the distribution.
-**/BepInEx/interop/
-**/BepInEx/cache/
-**/BepInEx/LogOutput.*
-**/BepInEx/profiles/
-**/BepInEx/cloudpunk-coop/
-**/UserData/
-**/Saves/
+**/bin/
+**/obj/
+**/__pycache__/
+.vs/
+.idea/
+*.user
+*.suo
 *.log
 *.dmp
+*.pyc
+work/
+build/
+artifacts/
+analysis/dump/
+BepInEx/
 .env
 .env.*
 Thumbs.db

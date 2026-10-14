@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>CloudpunkCoop.Protocol</AssemblyName>
+    <RootNamespace>CloudpunkCoop.Protocol</RootNamespace>
+    <!-- net6.0 is out of support upstream, but it is the runtime the game ships on.
+         We target it deliberately; suppress the EOL nag so builds stay clean. -->
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!--
+    Intentionally dependency-free: no NuGet packages at all.
+    The library must load inside a Unity 2018.4 / IL2CPP / BepInEx process on .NET 6,
+    and it must be unit-testable on a machine with no game installed.
+  -->
+
+</Project>

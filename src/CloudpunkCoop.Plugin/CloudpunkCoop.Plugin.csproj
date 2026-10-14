@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>CloudpunkCoop.Plugin</AssemblyName>
+    <RootNamespace>CloudpunkCoop</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <DebugType>portable</DebugType>
+    <!-- The game's interop wrappers are IL2CPP-generated; reference-mismatch warnings are expected noise. -->
+    <NoWarn>$(NoWarn);CS1701;CS1702</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Override with -p:GameRoot=... to build against another install. -->
+    <GameRoot Condition="'$(GameRoot)' == ''">C:\GOG Games\Cloudpunk</GameRoot>
+    <BepInExRoot>$(GameRoot)\BepInEx</BepInExRoot>
+  </PropertyGroup>
+
+  <!--
+    Only BepInEx\interop is referenced. BepInEx\unity-libs contains the real Unity
+    assemblies, and referencing both would make UnityEngine.MonoBehaviour ambiguous (CS0433).
+    The generated wrappers in interop\ are the types the plugin must talk to at runtime.
+  -->
+  <ItemGroup>
+    <Reference Include="$(BepInExRoot)\core\BepInEx.Core.dll">
+      <Private>false</Private>
+    </Reference>    <Reference Include="$(BepInExRoot)\core\BepInEx.Unity.Common.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(BepInExRoot)\core\BepInEx.Unity.IL2CPP.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(BepInExRoot)\core\Il2CppInterop.Runtime.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(BepInExRoot)\core\Il2CppInterop.Common.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(BepInExRoot)\core\Il2CppInterop.HarmonySupport.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(BepInExRoot)\core\0Harmony.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(BepInExRoot)\interop\*.dll">
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!--
+    The network layer is a plain net6.0 library with no Unity references, so it is unit
+    tested outside the game and loaded here as a normal dependency. Its DLL must be copied
+    next to the plugin in BepInEx\plugins, which tools\deploy.ps1 does.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\CloudpunkCoop.Protocol\CloudpunkCoop.Protocol.csproj" />
+  </ItemGroup>
+
+  <Target Name="VerifyGameInstall" BeforeTargets="BeforeBuild">
+    <Error Condition="!Exists('$(BepInExRoot)\interop\Assembly-CSharp.dll')"
+           Text="Interop assemblies not found at $(BepInExRoot). Run the game once with BepInEx installed so Il2CppInterop can generate them, or pass -p:GameRoot=..." />
+  </Target>
+
+</Project>

@@ -1,4 +1,4 @@
-# Preserve the exact bytes certified by CHECKSUMS.sha256 on every platform.
+# Keep imported source bytes stable; show native binary artifacts as binary.
 * -text
 *.dll binary
 *.exe binary
